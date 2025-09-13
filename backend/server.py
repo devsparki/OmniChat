@@ -254,6 +254,9 @@ app.add_middleware(
 # Create Socket.IO app that wraps FastAPI
 socket_app = socketio.ASGIApp(sio, app)
 
+# Make app point to socket_app so uvicorn server:app runs Socket.IO
+app = socket_app
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
