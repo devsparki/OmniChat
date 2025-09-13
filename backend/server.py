@@ -247,6 +247,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Create Socket.IO app that wraps FastAPI
+socket_app = socketio.ASGIApp(sio, app)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
