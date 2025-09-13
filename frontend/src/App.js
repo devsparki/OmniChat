@@ -48,11 +48,17 @@ function App() {
     socket.on('connect', () => {
       setIsConnected(true);
       console.log('Connected to server');
+      console.log('Socket ID:', socket.id);
     });
 
     socket.on('disconnect', () => {
       setIsConnected(false);
       console.log('Disconnected from server');
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('Socket.IO connection error:', error);
+      setIsConnected(false);
     });
 
     socket.on('new_message', (message) => {
