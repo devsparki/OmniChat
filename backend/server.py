@@ -98,6 +98,10 @@ def parse_from_mongo(item):
     return item
 
 # API Routes
+@api_router.get("/")
+async def root():
+    return {"message": "OmniChat API is running!"}
+
 @api_router.post("/users", response_model=User)
 async def create_user(user_data: UserCreate):
     user = User(**user_data.dict())
