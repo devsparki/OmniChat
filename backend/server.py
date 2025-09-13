@@ -26,8 +26,7 @@ sio = socketio.AsyncServer(cors_allowed_origins="*", async_mode="asgi")
 # Create the main app
 app = FastAPI()
 
-# Include the router in the main app
-app.include_router(api_router)
+# Router already included above
 
 socket_app = socketio.ASGIApp(sio, app)
 
