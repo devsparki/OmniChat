@@ -258,12 +258,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Create Socket.IO app that wraps FastAPI
+socket_app = socketio.ASGIApp(sio, app)
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
-
-# Create Socket.IO app that wraps FastAPI
-socket_app = socketio.ASGIApp(sio, app)
 
 # Make app point to socket_app so uvicorn server:app runs Socket.IO
 app = socket_app
